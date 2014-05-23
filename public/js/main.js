@@ -1,6 +1,16 @@
 
 
-console.log("TOTOT");
+  function enterFullscreen(element) {
+    if(element.requestFullScreen) {
+      element.requestFullScreen();
+    } else if(element.webkitRequestFullScreen) {
+      element.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+    } else if(element.mozRequestFullScreen){
+      element.mozRequestFullScreen();
+    } else {
+      alert('Votre navigateur ne supporte pas le mode plein écran, il est temps de passer à un plus récent ;)');
+    }
+ }
 
 function draw_sky(canvas)
 {
@@ -13,7 +23,7 @@ function draw_sky(canvas)
     context.fillRect(canvas.width / 2, 50, 10, 10);
 }
 
-window.onload = window.onresize = function()
+window.onresize = function()
 {
   var canvas = document.getElementById("spaceCanvas");
   canvas.width = window.innerWidth;
@@ -21,3 +31,10 @@ window.onload = window.onresize = function()
   console.log(canvas.width);
   draw_sky(canvas);
 }
+
+
+
+document.getElementById("startButton").onclick = function () {
+    var canvas = document.getElementById("spaceCanvas");
+    enterFullscreen(canvas);
+  };
