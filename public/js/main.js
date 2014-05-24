@@ -1,10 +1,18 @@
+
+  var stars = [];
+
+  $.get('http://kawox.tk/CNES/CSTT/public/catalogue.json',function(data){
+    stars = data;
+  },'json');
+
+
 function loadStars(width, height, fov)
 {
-  var stars = [];
-  for (var i = 0; i < 120; i++) {
-    stars.push({x: Math.random() * width + 1, y: Math.random() * height + 1, density:Math.random() * 5 + 1});
-  }
-  return (stars);
+  // var stars = [];
+  // for (var i = 0; i < 120; i++) {
+  //   stars.push({x: Math.random() * width + 1, y: Math.random() * height + 1, density:Math.random() * 5 + 1});
+  // }
+   return (stars);
 }
 
 function enterFullscreen(element) {
@@ -60,6 +68,3 @@ document.getElementById("startButton").onclick = function () {
     enterFullscreen(canvas);
   };
 
-$.get('catalogue.json',function(data){
-  console.log(data);
-},'json');
