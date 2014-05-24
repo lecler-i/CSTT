@@ -3,9 +3,9 @@
 	var detector_array = [];
   //$.get('http://kawox.tk/CNES/CSTT/public/catalogue.json',function(data){
   $.get('catalogue.json',function(data){
-    stars = data;
-	alert(stars);
-	console.log(stars);
+    
+	stars = data;
+	
   },'json');
 
 
@@ -69,50 +69,37 @@ function drawSky(canvas) {
 	
     context.fillStyle = "#000";
     context.fillRect(0, 0, canvas.width, canvas.height);
-
-<<<<<<< HEAD
-    ra = 148.6 / 180.0 * Math.PI;
-    decl = -19.24 / 180.0 * Math.PI;
-    rotNE = 63.9698 / 180.0 * Math.PI;
-    fov = 15.0 / 180.0 * Math.PI;
-
+	
+    decl = params.ascention / 180.0 * Math.PI;
+    ra = params.declinaison / 180.0 * Math.PI;
+    rotNE = params.rotation / 180.0 * Math.PI;
+    fov = params.fov / 180.0 * Math.PI;
+    
+//	ra = parseFloat(30.60 / 180.0 * Math.PI);
+//    decl = parseFloat(-40.24 / 180.0 * Math.PI);
+//    rotNE = parseFloat(60.9698 / 180.0 * Math.PI);
+//    fov = parseFloat(40.0 / 180.0 * Math.PI);
+	
+	console.log(decl);
+	console.log(ra);
+	console.log(rotNE);
+	console.log(fov);
+	
+	//ra = 1.4;
+    //decl = 1;
+    //rotNE = 0.5;
+   // fov = 1;
+	
     RST = RefST(ra, decl, rotNE);
 
-=======
-    console.log(params);
-
-    ra = params.ascention;
-    decl = params.declinaison;
-    rotNE = params.rot;
-    fov = params.fov;
-
-    RST = RefST(ra, decl, rotNE);
-// <<<<<<< HEAD
->>>>>>> c622213891458d63070ae51b63aaf1f9e32cf71a
     
     for(i=0; i<canvas.height; i++){
      detector_array[i] = [];
      for(j=0; j<canvas.width; j++){
 		detector_array[i][j] = 0.0;
-<<<<<<< HEAD
+
 	}
 	}	
- /*   var detector_array = [];
-    for(i=0; i<canvas.width; i++){
-     detector_array[i] = [];
-     for(j=0; j<canvas.height; j++){
-       detector_array[i][j] = 0.0;
-=======
-// =======
-//     var detector_array = [];
-//     for(i=0; i<canvas.width; i++){
-//      detector_array[i] = [];
-//      for(j=0; j<canvas.height; j++){
-//        detector_array[i][j] = 0.0;
-// >>>>>>> c366b8099fb867066d92ffc301b859fb8a4e5ab9
->>>>>>> c622213891458d63070ae51b63aaf1f9e32cf71a
-   }
-  }*/
 
 
     new_stars = convert_elem(stars, RST);

@@ -22,10 +22,10 @@
 	function ST2Tablet(Wpix, Hpix, Wdeg, vST){
 		
 		L = Wpix/2/Math.sin(Wdeg/2);		// Projection
-		//console.log('ST2Tablet');
-		//console.log(L);
-		//console.log(Wpix);
-		//console.log(Wdeg);
+		console.log('ST2Tablet');
+		console.log(L);
+		console.log(Wpix);
+		console.log(Wdeg);
 		
 		vTab = [];
 		vNorm = Math.sqrt(vST[0]*vST[0] + vST[1]*vST[1] + vST[2]*vST[2]);
