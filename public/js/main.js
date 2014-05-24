@@ -66,6 +66,14 @@ function drawSky(canvas) {
     fov = 1;
 
     RST = RefST(ra, decl, rotNE);
+    var detector_array = [];
+    for(i=0; i<canvas.height; i++){
+     detector_array[i] = [];
+     for(j=0; j<canvas.width; j++){
+       detector_array[i][j] = 0.0;
+   }
+  }
+
 
     new_stars = convert_elem(stars, RST);
     
@@ -73,7 +81,7 @@ function drawSky(canvas) {
     //console.log(new_stars);
 
 
-    convert_to_screen(new_stars, canvas.width, canvas.height, fov, context);
+    convert_to_screen(new_stars, canvas.width, canvas.height, fov, detector_array);
     // context.fillStyle = "#FFF";
 
     // for (var i = 0; i < stars.length; i++) {
