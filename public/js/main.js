@@ -72,7 +72,7 @@ function drawSky(canvas) {
     //console.log(new_stars);
 
 
-    convert_to_screen(new_stars, canvas.width, canvas.height, fov, canvas);
+    convert_to_screen(new_stars, canvas.width, canvas.height, fov, context);
     // context.fillStyle = "#FFF";
 
     // for (var i = 0; i < stars.length; i++) {
