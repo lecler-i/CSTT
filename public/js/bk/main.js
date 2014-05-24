@@ -70,27 +70,19 @@ function drawSky(canvas) {
     context.fillStyle = "#000";
     context.fillRect(0, 0, canvas.width, canvas.height);
 
-    ra = 148.6 / 180.0 * Math.PI;
-    decl = -19.24 / 180.0 * Math.PI;
-    rotNE = 63.9698 / 180.0 * Math.PI;
-    fov = 15.0 / 180.0 * Math.PI;
+    ra = 1.4;
+    decl = 1;
+    rotNE = 0.5;
+    fov = 1;
 
     RST = RefST(ra, decl, rotNE);
-
     
     for(i=0; i<canvas.height; i++){
      detector_array[i] = [];
      for(j=0; j<canvas.width; j++){
 		detector_array[i][j] = 0.0;
-	}
-	}	
- /*   var detector_array = [];
-    for(i=0; i<canvas.width; i++){
-     detector_array[i] = [];
-     for(j=0; j<canvas.height; j++){
-       detector_array[i][j] = 0.0;
    }
-  }*/
+  }
 
 
     new_stars = convert_elem(stars, RST);
@@ -111,8 +103,8 @@ function drawSky(canvas) {
 	for(i=0; i<canvas.height; i++){
 		for(j=0; j<canvas.width; j++){
 			drawPixel(context, j, i, Math.round(detector_array[i][j]));
-			if(detector_array[i][j]>0)
-				console.log( Math.round(detector_array[i][j]) );
+			//if(detector_array[i][j]>0)
+				//console.log(detector_array[i][j]);
 		}
 	}
 	
