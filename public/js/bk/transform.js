@@ -22,10 +22,10 @@
 	function ST2Tablet(Wpix, Hpix, Wdeg, vST){
 		
 		L = Wpix/2/Math.sin(Wdeg/2);		// Projection
-		console.log('ST2Tablet');
-		console.log(L);
-		console.log(Wpix);
-		console.log(Wdeg);
+		//console.log('ST2Tablet');
+		//console.log(L);
+		//console.log(Wpix);
+		//console.log(Wdeg);
 		
 		vTab = [];
 		vNorm = Math.sqrt(vST[0]*vST[0] + vST[1]*vST[1] + vST[2]*vST[2]);
@@ -230,7 +230,7 @@
 			vTablet = ST2Tablet(Wpix, Hpix, Wdeg, vST);
 			console.log('vTablet');
 			console.log(vTablet);
-			energy = 5*14000 * Math.pow(10, -array[i].mag / 2.5); //255.0;
+			energy = 255.0;
 			gauss2pixels(vTablet[0], vTablet[1], BLOB_SIGMA_PIX, BLOB_WIDTH_PIX, detector_array, energy);
 		}
 		

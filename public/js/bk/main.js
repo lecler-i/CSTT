@@ -1,10 +1,11 @@
+
 	var stars = [];
 	var detector_array = [];
   //$.get('http://kawox.tk/CNES/CSTT/public/catalogue.json',function(data){
-  $.get('catalogue.json',function(data){
-
+  $.get('http://transitonic.com/actinspace/catalogue.json',function(data){
     stars = data;
-
+	alert(stars);
+	console.log(stars);
   },'json');
 
 
@@ -55,8 +56,7 @@ function drawStar(context, star)
   context.fillRect(star.x, star.y, star.density, star.density);
 }
 
-function drawSky(canvas)
-{
+function drawSky(canvas) {
     var context = canvas.getContext("2d");
     //var stars = loadStars(canvas.width, canvas.height, 60);
 	
@@ -70,31 +70,18 @@ function drawSky(canvas)
     context.fillStyle = "#000";
     context.fillRect(0, 0, canvas.width, canvas.height);
 
-
-
-    // ra = 148.6 / 180.0 * Math.PI;
-    // decl = -19.24 / 180.0 * Math.PI;
-    // rotNE = 63.9698 / 180.0 * Math.PI;
-    // fov = 15.0 / 180.0 * Math.PI;
-
-    //RST = RefST(ra, decl, rotNE);
-
-
-    console.log(params);
-
-    ra = params.ascention / 180.0 * Math.PI;
-    decl = params.declinaison / 180.0 * Math.PI;
-    rotNE = params.rotation / 180.0 * Math.PI;
-    fov = params.fov / 180.0 * Math.PI;
+    ra = 1.4;
+    decl = 1;
+    rotNE = 0.5;
+    fov = 1;
 
     RST = RefST(ra, decl, rotNE);
-  
-
+    
     for(i=0; i<canvas.height; i++){
      detector_array[i] = [];
      for(j=0; j<canvas.width; j++){
-      detector_array[i][j] = 0.0;
-    }
+		detector_array[i][j] = 0.0;
+   }
   }
 
 
@@ -116,8 +103,8 @@ function drawSky(canvas)
 	for(i=0; i<canvas.height; i++){
 		for(j=0; j<canvas.width; j++){
 			drawPixel(context, j, i, Math.round(detector_array[i][j]));
-			if(detector_array[i][j]>0)
-				console.log( Math.round(detector_array[i][j]) );
+			//if(detector_array[i][j]>0)
+				//console.log(detector_array[i][j]);
 		}
 	}
 	
@@ -128,8 +115,7 @@ window.onresize = function() {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
   console.log(canvas.width);
-  if (document.fullScreen || document.mozFullScreen || document.webkitIsFullScreen)
-    drawSky(canvas);
+  drawSky(canvas);
 };
 
 var fullScreenCallback = function(e) {

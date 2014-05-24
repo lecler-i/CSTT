@@ -1,5 +1,3 @@
-var params = new CSTTConf();
-
 function set_display_div(id)
 {
     var obj = document.getElementById(id+'_to_hide');
@@ -12,9 +10,10 @@ function set_display_div(id)
 
 $(document).ready(function()
 		  {
-		  	$('#startButton').click(function() {
-	  		$('input').css('border-color', 'white');
-	  		var tmp = params.formIsOk("declinaison", "ascention", "rotation", "fov", "bruit", "vibration", "distortion", "refraction", "radiation", "to_hide");
+		      var params = new CSTTConf();
+		      $('#startButton').click(function() {
+			  $('input').css('border-color', 'white');
+			  var tmp = params.formIsOk("declinaison", "ascention", "rotation", "fov", "bruit", "vibration", "distortion", "refraction", "radiation", "to_hide");
 
 			  if (tmp != "")
 			      $('#'+tmp).css('border-color', 'red');
