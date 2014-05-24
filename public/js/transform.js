@@ -11,13 +11,13 @@
 	var COS_MAX_ANG_DISTANCE = Math.cos(30.0 / 180.0 * Math.PI);		// Pour selection
 	
 	// Initialisation de la matrice du detector 
-	// var detector_array = [];
-	// for(i=0; i<Wpx; i++){
-	// 	detector_array[i] = [];
-	// 	for(j=0; j<Hpx; j++){
-	// 		detector_array[i][j] = 0.0;
-	// 	}
-	// }
+	var detector_array = [];
+	for(i=0; i<Wpx; i++){
+		detector_array[i] = [];
+		for(j=0; j<Hpx; j++){
+			detector_array[i][j] = 0.0;
+		}
+	}
 	
 	// INPUT
 	// Wdeg
@@ -162,15 +162,15 @@
     			i = Math.floor(x);
 				j = Math.floor(y);
 				
+				//console.log(flux);
+				//drawPixel(detector_array, j, i, getPixel(detector_array, j, i) + flux);
 
-				drawPixel(detector_array, j, i, getPixel(detector_array, j, i) + flux);
-
-				//detector_array[i][j] = detector_array[i][j] + flux;
+				detector_array[i][j] = detector_array[i][j] + flux;
 				y = y + DELTA;
     		}
 			x = x + DELTA;
     	}
-		
+		console.log(detector_array);
 		return;
 	}
 
@@ -188,7 +188,7 @@
 			if (cosStarST > COS_MAX_ANG_DISTANCE)
 				result.push(array[i]);
 		};
-		
+
 		return (result);
 	}
 	
