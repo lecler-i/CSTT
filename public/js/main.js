@@ -35,8 +35,13 @@ function enterFullscreen(element) {
 
  function drawPixel(detector, x, y, intensity)
  {
-  context.fillStyle = "#FFF";
+  context.fillStyle = rgba(intensity, intensity, intensity, 1);
   detector.fillRect(x, y, 1, 1);
+ }
+
+ function getPixel(detector, x, y)
+ {
+  return (detector.getImageData(x, y, 1, 1).data[0]);
  }
  
 function drawStar(context, star)
