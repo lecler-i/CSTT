@@ -64,8 +64,8 @@ var fullScreenCallback = function(e) {
 document.addEventListener("fullscreenchange", fullScreenCallback);
 document.addEventListener("webkitfullscreenchange", fullScreenCallback);
  
-document.getElementById("startButton").onclick = function () {
-    var canvas = document.getElementById("spaceCanvas");
-    enterFullscreen(canvas);
-  };
+// document.getElementById("startButton").onclick = function () {
+//     var canvas = document.getElementById("spaceCanvas");
+//     enterFullscreen(canvas);
+//   };
 
