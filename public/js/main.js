@@ -44,7 +44,7 @@ function enterFullscreen(element) {
  {
   var imgd = detector.getImageData(x, y, 1, 1);
   var pix = imgd.data;
-  // console.log(pix);
+  console.log(pix);
   return (pix[0]);
  }
  
