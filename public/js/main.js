@@ -2,7 +2,7 @@
 	var stars = [];
 	var detector_array = [];
   //$.get('http://kawox.tk/CNES/CSTT/public/catalogue.json',function(data){
-  $.get('http://transitonic.com/actinspace/catalogue.json',function(data){
+  $.get('catalogue.json',function(data){
     stars = data;
 	alert(stars);
 	console.log(stars);
@@ -70,25 +70,27 @@ function drawSky(canvas) {
     context.fillStyle = "#000";
     context.fillRect(0, 0, canvas.width, canvas.height);
 
-    ra = 1.4;
-    decl = 1;
-    rotNE = 0.5;
-    fov = 1;
+    console.log(params);
+
+    ra = params.ascention;
+    decl = params.declinaison;
+    rotNE = params.rot;
+    fov = params.fov;
 
     RST = RefST(ra, decl, rotNE);
-<<<<<<< HEAD
+// <<<<<<< HEAD
     
     for(i=0; i<canvas.height; i++){
      detector_array[i] = [];
      for(j=0; j<canvas.width; j++){
 		detector_array[i][j] = 0.0;
-=======
-    var detector_array = [];
-    for(i=0; i<canvas.width; i++){
-     detector_array[i] = [];
-     for(j=0; j<canvas.height; j++){
-       detector_array[i][j] = 0.0;
->>>>>>> c366b8099fb867066d92ffc301b859fb8a4e5ab9
+// =======
+//     var detector_array = [];
+//     for(i=0; i<canvas.width; i++){
+//      detector_array[i] = [];
+//      for(j=0; j<canvas.height; j++){
+//        detector_array[i][j] = 0.0;
+// >>>>>>> c366b8099fb867066d92ffc301b859fb8a4e5ab9
    }
   }
 
@@ -123,7 +125,8 @@ window.onresize = function() {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
   console.log(canvas.width);
-  drawSky(canvas);
+  if (document.fullScreen || document.mozFullScreen || document.webkitIsFullScreen)
+    drawSky(canvas);
 };
 
 var fullScreenCallback = function(e) {
