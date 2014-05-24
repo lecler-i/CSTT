@@ -13,12 +13,11 @@ function getStarCoord(star)
 
 function loadStars(width, height, fov)
 {
-  var stars = [];
+ // var stars = [];
   // for (var i = 0; i < 120; i++) {
   //   stars.push({x: Math.random() * width + 1, y: Math.random() * height + 1, density:Math.random() * 5 + 1});
   // }
-  console.log(stars);
-   return (stars);
+  return (stars);
 }
 
 function enterFullscreen(element) {
@@ -58,7 +57,13 @@ function drawSky(canvas) {
 
     RST = RefST(ra, decl, rotNE);
 
-    convert_to_screen(stars, canvas.width, canvas.height, fov, canvas);
+    new_stars = convert_elem(stars, RST);
+    
+    console.log(stars);
+    console.log(new_stars);
+
+
+    convert_to_screen(new_stars, canvas.width, canvas.height, fov, canvas);
     // context.fillStyle = "#FFF";
 
     // for (var i = 0; i < stars.length; i++) {

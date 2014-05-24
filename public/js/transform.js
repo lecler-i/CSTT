@@ -191,7 +191,7 @@
 
 	function convert_elem(array, RST)
 	{
-		zST = [RST[1][3], RST[2][3], RST[3][3]];
+		zST = [RST[0][2], RST[1][2], RST[2][2]];
 		array = select(array, zST);
 
 		var result = [];
