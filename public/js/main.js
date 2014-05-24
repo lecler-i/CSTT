@@ -67,9 +67,9 @@ function drawSky(canvas) {
 
     RST = RefST(ra, decl, rotNE);
     var detector_array = [];
-    for(i=0; i<canvas.height; i++){
+    for(i=0; i<canvas.width; i++){
      detector_array[i] = [];
-     for(j=0; j<canvas.width; j++){
+     for(j=0; j<canvas.height; j++){
        detector_array[i][j] = 0.0;
    }
   }
