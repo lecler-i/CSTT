@@ -4,8 +4,8 @@
   //$.get('http://kawox.tk/CNES/CSTT/public/catalogue.json',function(data){
   $.get('catalogue.json',function(data){
     stars = data;
-	alert(stars);
-	console.log(stars);
+	// alert(stars);
+	// console.log(stars);
   },'json');
 
 
@@ -70,31 +70,29 @@ function drawSky(canvas) {
     context.fillStyle = "#000";
     context.fillRect(0, 0, canvas.width, canvas.height);
 
-<<<<<<< HEAD
-    ra = 148.6 / 180.0 * Math.PI;
-    decl = -19.24 / 180.0 * Math.PI;
-    rotNE = 63.9698 / 180.0 * Math.PI;
-    fov = 15.0 / 180.0 * Math.PI;
 
-    RST = RefST(ra, decl, rotNE);
+    // ra = 148.6 / 180.0 * Math.PI;
+    // decl = -19.24 / 180.0 * Math.PI;
+    // rotNE = 63.9698 / 180.0 * Math.PI;
+    // fov = 15.0 / 180.0 * Math.PI;
 
-=======
+    //RST = RefST(ra, decl, rotNE);
+
+
     console.log(params);
 
-    ra = params.ascention;
-    decl = params.declinaison;
-    rotNE = params.rot;
-    fov = params.fov;
+    ra = params.ascention / 180.0 * Math.PI;
+    decl = params.declinaison / 180.0 * Math.PI;
+    rotNE = params.rotation / 180.0 * Math.PI;
+    fov = params.fov / 180.0 * Math.PI;
 
     RST = RefST(ra, decl, rotNE);
-// <<<<<<< HEAD
->>>>>>> c622213891458d63070ae51b63aaf1f9e32cf71a
-    
+  
     for(i=0; i<canvas.height; i++){
      detector_array[i] = [];
      for(j=0; j<canvas.width; j++){
 		detector_array[i][j] = 0.0;
-<<<<<<< HEAD
+
 	}
 	}	
  /*   var detector_array = [];
