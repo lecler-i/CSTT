@@ -11,18 +11,19 @@
 	var COS_MAX_ANG_DISTANCE = Math.cos(30.0 / 180.0 * Math.PI);		// Pour selection
 	
 	// Initialisation de la matrice du detector 
-	var detector_array = [];
-	for(i=0; i<Wpx; i++){
-		detector_array[i] = [];
-		for(j=0; j<Hpx; j++){
-			detector_array[i][j] = 0.0;
-		}
-	}
+	// var detector_array = [];
+	// for(i=0; i<Wpx; i++){
+	// 	detector_array[i] = [];
+	// 	for(j=0; j<Hpx; j++){
+	// 		detector_array[i][j] = 0.0;
+	// 	}
+	// }
 	
 	// INPUT
 	// Wdeg
 	var RST = [];
-	RST = RefST(ra, decl, rotNE);
+	//TODO
+	//RST = RefST(ra, decl, rotNE);
 	
 	// Transformation vecteur ref Star Tracker vers Tablet
 	function ST2Tablet(Wpix, Hpix, Wdeg, vST){
@@ -160,7 +161,11 @@
 				
     			i = Math.floor(x);
 				j = Math.floor(y);
-				detector_array[i][j] = detector_array[i][j] + flux;
+				
+
+				drawPixel(detector_array, j, i, getPixel(detector_array, j, i) + flux);
+
+				//detector_array[i][j] = detector_array[i][j] + flux;
 				y = y + DELTA;
     		}
 			x = x + DELTA;
@@ -169,19 +174,13 @@
 		return;
 	}
 
-	function is_valid(elem)
-	{
-
-		return (false);
-	}
-
 	function select(array, zST, COS_MAX_ANG_DISTANCE)
 	{
 		var result = [];
 
 		for (var i = 0; i < array.length; i++) {
 			
-			vCat = [array.x, array.y, array.z];
+			vCat = [array[i].x, array[i].y, array[i].z];
 			cosStarST = vector_vector( vCat, zST);
 			if (cosStarST < COS_MAX_ANG_DISTANCE)
 				result.push(array[i]);
@@ -211,9 +210,9 @@
 		return ({x:vST[0], y:vST[1], z:vST[2], mag:elem.mag});
 	}
 	
-	function convert_to_screen(array, detector_array){
+	function convert_to_screen(array, Wpix, Hpix, Wdeg, detector_array){
 		for (var i = 0; i < array.length; i++) {
-			vST = [array.x, array.y, array.z];
+			vST = [array[i].x, array[i].y, array[i].z];
 			vTablet = ST2Tablet(Wpix, Hpix, Wdeg, vST);
 			energy = 255.0;
 			gauss2pixels(vTablet[0], vTablet[1], BLOB_SIGMA_PIX, BLOB_WIDTH_PIX, detector_array, energy);
