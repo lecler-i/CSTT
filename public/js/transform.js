@@ -182,7 +182,7 @@
 			
 			vCat = [array[i].x, array[i].y, array[i].z];
 			cosStarST = vector_vector( vCat, zST);
-			if (cosStarST < COS_MAX_ANG_DISTANCE)
+			if (cosStarST > COS_MAX_ANG_DISTANCE)
 				result.push(array[i]);
 		};
 		return (result);

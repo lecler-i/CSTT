@@ -13,6 +13,7 @@ function getStarCoord(star)
 
 function loadStars(width, height, fov)
 {
+  console.log(stars);
  // var stars = [];
   // for (var i = 0; i < 120; i++) {
   //   stars.push({x: Math.random() * width + 1, y: Math.random() * height + 1, density:Math.random() * 5 + 1});
@@ -53,7 +54,7 @@ function drawSky(canvas) {
     ra = 1.4;
     decl = 1;
     rotNE = 0.5;
-    fov = 0.6;
+    fov = 1;
 
     RST = RefST(ra, decl, rotNE);
 
