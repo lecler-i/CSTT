@@ -134,7 +134,7 @@
 		
 		b = 0;
 		for(i=0; i<3; i++){		
-			b = b + v[i] * w[j];
+			b = b + v[i] * w[i];
 		}
 		
 		return b;
