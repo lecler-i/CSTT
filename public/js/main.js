@@ -1,17 +1,10 @@
-
 	var stars = [];
 	var detector_array = [];
   //$.get('http://kawox.tk/CNES/CSTT/public/catalogue.json',function(data){
   $.get('catalogue.json',function(data){
-<<<<<<< HEAD
+
     stars = data;
-	// alert(stars);
-	// console.log(stars);
-=======
-    
-	stars = data;
-	
->>>>>>> 76457a2e75d7a030afffdccc8cae4ade418115f7
+
   },'json');
 
 
@@ -62,7 +55,8 @@ function drawStar(context, star)
   context.fillRect(star.x, star.y, star.density, star.density);
 }
 
-function drawSky(canvas) {
+function drawSky(canvas)
+{
     var context = canvas.getContext("2d");
     //var stars = loadStars(canvas.width, canvas.height, 60);
 	
@@ -99,10 +93,9 @@ function drawSky(canvas) {
     for(i=0; i<canvas.height; i++){
      detector_array[i] = [];
      for(j=0; j<canvas.width; j++){
-		detector_array[i][j] = 0.0;
-
-	}
-		
+      detector_array[i][j] = 0.0;
+    }
+  }
 
 
     new_stars = convert_elem(stars, RST);
