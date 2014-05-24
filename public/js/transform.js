@@ -157,8 +157,8 @@
 				
 				//console.log(flux);
 				//drawPixel(detector_array, j, i, getPixel(detector_array, j, i) + flux);
-
-				detector_array[i][j] = detector_array[i][j] + flux;
+				if (i >= 0  && j >= 0)
+					detector_array[i][j] = detector_array[i][j] + flux;
 				y = y + DELTA;
     		}
 			x = x + DELTA;
