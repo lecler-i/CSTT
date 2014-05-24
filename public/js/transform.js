@@ -11,14 +11,7 @@
 	var COS_MAX_ANG_DISTANCE = Math.cos(30.0 / 180.0 * Math.PI);		// Pour selection
 	
 	// Initialisation de la matrice du detector 
-	var detector_array = [];
-	for(i=0; i<Wpx; i++){
-		detector_array[i] = [];
-		for(j=0; j<Hpx; j++){
-			detector_array[i][j] = 0.0;
-		}
-	}
-	
+		
 	// INPUT
 	// Wdeg
 	var RST = [];
