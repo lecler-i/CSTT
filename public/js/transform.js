@@ -178,16 +178,17 @@
 	{
 		var result = [];
 
-		console.log(zST);
+		//console.log(zST);
 
 		for (var i = 0; i < array.length; i++) {
 			
 			vCat = [array[i].x, array[i].y, array[i].z];
 			cosStarST = vector_vector( vCat, zST);
-			console.log(vCat + "       " + cosStarST);
+			//console.log(vCat + "       " + cosStarST);
 			if (cosStarST > COS_MAX_ANG_DISTANCE)
 				result.push(array[i]);
 		};
+		
 		return (result);
 	}
 	
