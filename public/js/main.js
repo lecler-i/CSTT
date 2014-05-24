@@ -41,10 +41,10 @@ function enterFullscreen(element) {
 
  function getPixel(detector, x, y)
  {
-  // var imgd = detector.getImageData(x, y, 1, 1);
-  // var pix = imgd.data;
+  var imgd = detector.getImageData(x, y, 1, 1);
+  var pix = imgd.data;
   // console.log(pix);
-  return (1);
+  return (pix[0]);
  }
  
 function drawStar(context, star)
