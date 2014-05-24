@@ -13,10 +13,10 @@ function getStarCoord(star)
 
 function loadStars(width, height, fov)
 {
-  // var stars = [];
-  // for (var i = 0; i < 120; i++) {
-  //   stars.push({x: Math.random() * width + 1, y: Math.random() * height + 1, density:Math.random() * 5 + 1});
-  // }
+  var stars = [];
+  for (var i = 0; i < 120; i++) {
+    stars.push({x: Math.random() * width + 1, y: Math.random() * height + 1, density:Math.random() * 5 + 1});
+  }
   // console.log(stars);
    return (stars);
 }
