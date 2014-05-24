@@ -1,8 +1,11 @@
 
-  var stars = [];
-
-  $.get('http://kawox.tk/CNES/CSTT/public/catalogue.json',function(data){
+	var stars = [];
+	var detector_array = [];
+  //$.get('http://kawox.tk/CNES/CSTT/public/catalogue.json',function(data){
+  $.get('http://transitonic.com/actinspace/catalogue.json',function(data){
     stars = data;
+	alert(stars);
+	console.log(stars);
   },'json');
 
 
@@ -13,7 +16,7 @@ function getStarCoord(star)
 
 function loadStars(width, height, fov)
 {
-  console.log(stars);
+  //console.log(stars);
  // var stars = [];
   // for (var i = 0; i < 120; i++) {
   //   stars.push({x: Math.random() * width + 1, y: Math.random() * height + 1, density:Math.random() * 5 + 1});
@@ -37,14 +40,14 @@ function enterFullscreen(element) {
  {
   detector.fillStyle = "rgba(" + intensity + ", " + intensity  + ", " + intensity + ", 1)";
   detector.fillRect(x, y, 1, 1);
-  console.log(x + "    " + y + "     " + intensity);
+  //console.log(x + "    " + y + "     " + intensity);
  }
 
  function getPixel(detector, x, y)
  {
   var imgd = detector.getImageData(x, y, 1, 1);
   var pix = imgd.data;
-  console.log(pix);
+  //console.log(pix);
   return (pix[0]);
  }
  
@@ -55,8 +58,15 @@ function drawStar(context, star)
 
 function drawSky(canvas) {
     var context = canvas.getContext("2d");
-    var stars = loadStars(canvas.width, canvas.height, 60);
-
+    //var stars = loadStars(canvas.width, canvas.height, 60);
+	
+	
+	// stars[0].x = 1.0;
+	// stars[0].y = 0.0;
+	// stars[0].z = 0.0;
+	// stars[0].mag = 2.0;
+	// console.log(stars);
+	
     context.fillStyle = "#000";
     context.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -66,11 +76,11 @@ function drawSky(canvas) {
     fov = 1;
 
     RST = RefST(ra, decl, rotNE);
-    var detector_array = [];
+    
     for(i=0; i<canvas.height; i++){
      detector_array[i] = [];
      for(j=0; j<canvas.width; j++){
-       detector_array[i][j] = 0.0;
+		detector_array[i][j] = 0.0;
    }
   }
 
@@ -79,14 +89,25 @@ function drawSky(canvas) {
     
     //console.log(stars);
     //console.log(new_stars);
+	
+	//console.log(fov);
 
-
-    convert_to_screen(new_stars, canvas.width, canvas.height, fov, detector_array);
+   convert_to_screen(new_stars, canvas.width, canvas.height, fov, detector_array);
     // context.fillStyle = "#FFF";
 
     // for (var i = 0; i < stars.length; i++) {
     //   drawStar(context, stars[i]);
     // }
+	
+	
+	for(i=0; i<canvas.height; i++){
+		for(j=0; j<canvas.width; j++){
+			drawPixel(context, j, i, Math.round(detector_array[i][j]));
+			//if(detector_array[i][j]>0)
+				//console.log(detector_array[i][j]);
+		}
+	}
+	
 }
 
 window.onresize = function() {

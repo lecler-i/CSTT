@@ -21,7 +21,12 @@
 	// Transformation vecteur ref Star Tracker vers Tablet
 	function ST2Tablet(Wpix, Hpix, Wdeg, vST){
 		
-		L = Wpix/2/Math.sin(Wdeg/2/180.0*Math.PI);		// Projection
+		L = Wpix/2/Math.sin(Wdeg/2);		// Projection
+		//console.log('ST2Tablet');
+		//console.log(L);
+		//console.log(Wpix);
+		//console.log(Wdeg);
+		
 		vTab = [];
 		vNorm = Math.sqrt(vST[0]*vST[0] + vST[1]*vST[1] + vST[2]*vST[2]);
 		
@@ -150,15 +155,15 @@
         	y = y_0;
     		while (y <= y_f){
     			y_block = Math.pow( y - y_cen, 2 ) / ( 2*sigma2_pix );
-    			flux = I0 * Math.exp(-(x_block + y_block)) / Math.pow( DIV_PER_PIX, 2) / Math.pow( DIV_PER_PIX, 2);
+    			flux = 10*I0 * Math.exp(-(x_block + y_block)) / Math.pow( DIV_PER_PIX, 2) / Math.pow( DIV_PER_PIX, 2);
 				
     			i = Math.floor(x);
 				j = Math.floor(y);
 				
 				//console.log(flux);
 				//drawPixel(detector_array, j, i, getPixel(detector_array, j, i) + flux);
-				if (i >= 0  && j >= 0 && i < Wpix && j < Hpix)
-					detector_array[i][j] = detector_array[i][j] + flux;
+				if (i >= 0  && j >= 0 && i < Hpix && j < Wpix)
+					detector_array[i][j] = 	detector_array[i][j] + flux;
 				y = y + DELTA;
     		}
 			x = x + DELTA;
@@ -180,6 +185,14 @@
 			//console.log(vCat + "       " + cosStarST);
 			if (cosStarST > COS_MAX_ANG_DISTANCE)
 				result.push(array[i]);
+				
+			if (cosStarST > COS_MAX_ANG_DISTANCE){
+				//console.log('SELECT ');
+				//console.log(vCat);
+				//console.log(zST);
+				//console.log(cosStarST);
+				//console.log(COS_MAX_ANG_DISTANCE);
+			}
 		};
 
 		return (result);
@@ -190,7 +203,7 @@
 	{
 		zST = [RST[0][2], RST[1][2], RST[2][2]];
 		array = select(array, zST);
-		console.log(array);
+		//console.log(array);
 		var result = [];
 
 		for (var i = 0; i < array.length; i++) {
@@ -212,9 +225,21 @@
 		Hpix = h;
 		for (var i = 0; i < array.length; i++) {
 			vST = [array[i].x, array[i].y, array[i].z];
+			console.log('convert_to_screen');
+			console.log(vST);
 			vTablet = ST2Tablet(Wpix, Hpix, Wdeg, vST);
-			energy = 255.0;
+			console.log('vTablet');
+			console.log(vTablet);
+			energy = array[i].x; //255.0;
 			gauss2pixels(vTablet[0], vTablet[1], BLOB_SIGMA_PIX, BLOB_WIDTH_PIX, detector_array, energy);
 		}
-		console.log(detector_array);
+		
+		//max = 0;
+		//for(i=0; i<w; i++){
+		//	for(j=0; j<h; j++){
+		//		if(detector_array[i][j]>max)
+		//			max = detector_array[i][j];
+		//	}
+		//}
+		//console.log('MAX: ' + max);
 	}
