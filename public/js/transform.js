@@ -151,3 +151,39 @@
 		
 		return;
 	}
+
+	function is_valid(elem)
+	{
+
+		return (false);
+	}
+
+	function select(array)
+	{
+		var result = [];
+
+		for (var i = 0; i < array.length; i++) {
+			if (is_valid(array[i]))
+				result.push(array[i]);
+		};
+		return (result);
+	}
+	
+
+	function convert_elem(array)
+	{
+		array = select(array);
+
+		var result = [];
+
+		for (var i = 0; i < array.length; i++) {
+			result.push(convert_single_elem(array[i]));
+		};
+		return (result);
+	}
+
+	function convert_single_elem(elem)
+	{
+
+		return ({x:0, y:0, z:0, mag:0});
+	}
