@@ -33,6 +33,11 @@ function enterFullscreen(element) {
     }
  }
 
+ function drawPixel(detector, x, y, intensity)
+ {
+ 
+ }
+ 
 function drawStar(context, star)
 {
   context.fillRect(star.x, star.y, star.density, star.density);

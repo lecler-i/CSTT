@@ -8,6 +8,7 @@
 	
 	var BLOB_SIGMA_PIX = 0.50;
 	var BLOB_WIDTH_PIX = 3.0;
+	var COS_MAX_ANG_DISTANCE = Math.cos(30.0 / 180.0 * Math.PI);		// Pour selection
 	
 	// Initialisation de la matrice du detector 
 	var detector_array = [];
@@ -17,6 +18,11 @@
 			detector_array[i][j] = 0.0;
 		}
 	}
+	
+	// INPUT
+	// Wdeg
+	var RST = [];
+	RST = RefST(ra, decl, rotNE);
 	
 	// Transformation vecteur ref Star Tracker vers Tablet
 	function ST2Tablet(Wpix, Hpix, Wdeg, vST){
@@ -121,6 +127,17 @@
 		return b;
 	}
 	
+	
+	// Multiplication entre matrice et vecteur
+	function vector_vector( v, w){
+		
+		b = 0;
+		for(i=0; i<3; i++){		
+			b = b + v[i] * w[j];
+		}
+		
+		return b;
+	}
 	// Integration gaussienne sur detecteur
 	function gauss2pixels(x_cen, y_cen, sigma_pix, width_pix, detector_array, energy) {
 		DIV_PER_PIX = 2;
@@ -158,32 +175,47 @@
 		return (false);
 	}
 
-	function select(array)
+	function select(array, zST, COS_MAX_ANG_DISTANCE)
 	{
 		var result = [];
 
 		for (var i = 0; i < array.length; i++) {
-			if (is_valid(array[i]))
+			
+			vCat = [array.x, array.y, array.z];
+			cosStarST = vector_vector( vCat, zST);
+			if (cosStarST < COS_MAX_ANG_DISTANCE)
 				result.push(array[i]);
 		};
 		return (result);
 	}
 	
 
-	function convert_elem(array)
+	function convert_elem(array, RST)
 	{
-		array = select(array);
+		zST = [RST[1][3], RST[2][3], RST[3][3]];
+		array = select(array, zST);
 
 		var result = [];
 
 		for (var i = 0; i < array.length; i++) {
-			result.push(convert_single_elem(array[i]));
+			result.push(convert_single_elem(array[i], RST));
 		};
 		return (result);
 	}
 
-	function convert_single_elem(elem)
+	function convert_single_elem(elem, RST)
 	{
-
-		return ({x:0, y:0, z:0, mag:0});
+		vCat = [elem.x, elem.y, elem.z];
+		vST = matrix_vector( RST, vCat);
+		//gauss2pixels(x_cen, y_cen, BLOB_SIGMA_PIX, BLOB_WIDTH_PIX, detector_array, energy);
+		return ({x:vST[0], y:vST[1], z:vST[2], mag:elem.mag});
+	}
+	
+	function convert_to_screen(array, detector_array){
+		for (var i = 0; i < array.length; i++) {
+			vST = [array.x, array.y, array.z];
+			vTablet = ST2Tablet(Wpix, Hpix, Wdeg, vST);
+			energy = 255.0;
+			gauss2pixels(vTablet[0], vTablet[1], BLOB_SIGMA_PIX, BLOB_WIDTH_PIX, detector_array, energy);
+		}
 	}
