@@ -35,7 +35,7 @@ function enterFullscreen(element) {
 
  function drawPixel(detector, x, y, intensity)
  {
-  context.fillStyle = rgba(intensity, intensity, intensity, 1);
+  detector.fillStyle = rgba(intensity, intensity, intensity, 1);
   detector.fillRect(x, y, 1, 1);
  }
 
