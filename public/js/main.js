@@ -6,6 +6,11 @@
   },'json');
 
 
+function getStarCoord(star)
+{
+  return ({x: Math.random() * width + 1, y: Math.random() * height + 1, density:Math.random() * 5 + 1});
+}
+
 function loadStars(width, height, fov)
 {
   // var stars = [];
