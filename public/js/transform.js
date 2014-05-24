@@ -3,8 +3,8 @@
 	// energy = 255;
 	
 	// Parametres generaux
-	// Wpix = 680;
-	// Hpix = 460;
+	 Wpix = 0;
+	 Hpix = 0;
 	
 	var BLOB_SIGMA_PIX = 0.50;
 	var BLOB_WIDTH_PIX = 3.0;
@@ -157,7 +157,7 @@
 				
 				//console.log(flux);
 				//drawPixel(detector_array, j, i, getPixel(detector_array, j, i) + flux);
-				if (i >= 0  && j >= 0)
+				if (i >= 0  && j >= 0 && i < Wpix && j < Hpix)
 					detector_array[i][j] = detector_array[i][j] + flux;
 				y = y + DELTA;
     		}
@@ -207,7 +207,9 @@
 		return ({x:vST[0], y:vST[1], z:vST[2], mag:elem.mag});
 	}
 	
-	function convert_to_screen(array, Wpix, Hpix, Wdeg, detector_array){
+	function convert_to_screen(array, w, h, Wdeg, detector_array){
+		Wpix = w;
+		Hpix = h;
 		for (var i = 0; i < array.length; i++) {
 			vST = [array[i].x, array[i].y, array[i].z];
 			vTablet = ST2Tablet(Wpix, Hpix, Wdeg, vST);
