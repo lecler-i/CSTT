@@ -163,8 +163,8 @@
     		}
 			x = x + DELTA;
     	}
-		console.log(detector_array);
-		return;
+		//console.log(detector_array);
+		//return detector_array;
 	}
 
 	function select(array, zST)
@@ -214,4 +214,5 @@
 			energy = 255.0;
 			gauss2pixels(vTablet[0], vTablet[1], BLOB_SIGMA_PIX, BLOB_WIDTH_PIX, detector_array, energy);
 		}
+		console.log(detector_array);
 	}
