@@ -59,8 +59,8 @@ function drawSky(canvas) {
 
     new_stars = convert_elem(stars, RST);
     
-    console.log(stars);
-    console.log(new_stars);
+    //console.log(stars);
+    //console.log(new_stars);
 
 
     convert_to_screen(new_stars, canvas.width, canvas.height, fov, canvas);
