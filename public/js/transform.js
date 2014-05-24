@@ -193,7 +193,7 @@
 	{
 		zST = [RST[0][2], RST[1][2], RST[2][2]];
 		array = select(array, zST);
-
+		console.log(array);
 		var result = [];
 
 		for (var i = 0; i < array.length; i++) {
