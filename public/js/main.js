@@ -1,6 +1,17 @@
 
 
-  function enterFullscreen(element) {
+
+function loadStars(width, height, fov)
+{
+  var stars = [];
+  for (var i = 0; i < 120; i++) {
+    stars.push({x: Math.random() * width + 1, y: Math.random() * height + 1, density:Math.random() * 5 + 1});
+  }
+  return (stars);
+}
+
+
+function enterFullscreen(element) {
     if (element.requestFullScreen) {
       element.requestFullScreen();
     } else if (element.webkitRequestFullScreen) {
@@ -12,14 +23,24 @@
     }
  }
 
+function drawStar(context, star)
+{
+  context.fillRect(star.x, star.y, star.density, star.density);
+}
+
 function drawSky(canvas) {
     var context = canvas.getContext("2d");
+    var stars = loadStars(canvas.width, canvas.height, 60);
 
     context.fillStyle = "#000";
     context.fillRect(0, 0, canvas.width, canvas.height);
 
     context.fillStyle = "#FFF";
-    context.fillRect(canvas.width / 2, canvas.height / 2, 10, 10);
+
+    for (var i = 0; i < stars.length; i++) {
+      drawStar(context, stars[i]);
+    };
+    
 }
 
 window.onresize = function() {
