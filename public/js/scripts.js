@@ -1,40 +1,16 @@
-/*
-Creating an HTML5 enhanced responsive-ready contact form, with custom javascript feature detection
-www.toddmotto.com
-*/
-(function() {
+function set_display_div(id)
+{
+    var obj = document.getElementById(id+'_to_hide');
 
-	// Create input element for testing
-	var inputs = document.createElement('input');
-	
-	// Create the supports object
-	var supports = {};
-	
-	supports.autofocus   = 'autofocus' in inputs;
-	supports.required    = 'required' in inputs;
-	supports.placeholder = 'placeholder' in inputs;
+    if ($('#'+id+':checked').length)
+    	$(obj).slideDown(300);
+    else
+    	$(obj).slideUp(300);
+}
 
-	// Fallback for autofocus attribute
-	if(!supports.autofocus) {
-		
-	}
-	
-	// Fallback for required attribute
-	if(!supports.required) {
-		
-	}
-
-	// Fallback for placeholder attribute
-	if(!supports.placeholder) {
-		
-	}
-	
-	// Change text inside send button on submit
-	var send = document.getElementById('contact-submit');
-	if(send) {
-		send.onclick = function () {
-			this.innerHTML = '...Sending';
-		}
-	}
-
-})();
+$(document).ready(function()
+		  {
+		      $( "input[type='checkbox']" ).change(function() {
+			  set_display_div($(this).attr('id'));
+		      });
+		  });

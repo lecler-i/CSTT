@@ -5,6 +5,8 @@
 	<title>CSTT</title>
 	<meta name="viewport" content="width=device-width,initial-scale=1.0">
 	<link href="css/style.css" rel="stylesheet">
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script src="js/scripts.js"></script>
 </head>
 
 <body>
@@ -13,7 +15,7 @@
 		<div id="main" style="padding:50px 0 0 0;">
 		
 		<!-- Form -->
-		<form id="contact-form" action="#" method="post">
+		<div id="contact-form">
 			<h3>Calibration Start Traker Tool</h3>
 			<h4>Fill in the form below to set a sky view</h4>
 			<div>
@@ -31,19 +33,77 @@
 			<div>
 				<label>
 					<span>Rotation</span>
-					<input placeholder="In degree" type="tel" tabindex="3" required>
+					<input placeholder="In degree" type="text" id="bruit" tabindex="3" required>
+				</label>
+			</div>
+			<div>
+				<label>
+					<span>Bruit</span>
+					<input id="bruit" type="checkbox" tabindex="4" required>
+				</label>
+			</div>
+			<div class="to_hide" id="bruit_to_hide">
+				<label>
+					<span>Bruit Value</span>
+					<input placeholder="0 to 1" type="text" tabindex="5" required>
+				</label>
+			</div>
+			<div>
+				<label>
+					<span>Vibration</span>
+					<input id="vibration" type="checkbox" tabindex="6" required>
+				</label>
+			</div>
+			<div class="to_hide" id="vibration_to_hide">
+				<label>
+					<span>Vibration Value</span>
+					<input placeholder="In Hertz" type="text" tabindex="7" required>
+				</label>
+			</div>
+			<div>
+				<label>
+					<span>Distorsion thermo elastique</span>
+					<input disabled id="distortion" type="checkbox" tabindex="8" required>
+				</label>
+			</div>
+			<div class="to_hide" id="distortion_to_hide">
+				<label>
+					<span>Distortion Value</span>
+					<input placeholder="In μm" type="text" tabindex="9" required>
+				</label>
+			</div>
+			<div>
+				<label>
+					<span>Réfraction atmosphérique</span>
+					<input disabled id="refraction" type="checkbox" tabindex="10" required>
+				</label>
+			</div>
+			<div class="to_hide" id="refraction_to_hide">
+				<label>
+					<span>Refraction Value</span>
+					<input placeholder="0 to 1" type="text" tabindex="11" required>
+				</label>
+			</div>
+			<div>
+				<label>
+					<span>Radiation</span>
+					<input disabled id="radiation" type="checkbox" tabindex="12" required>
+				</label>
+			</div>
+			<div class="to_hide" id="radiation_to_hide">
+				<label>
+					<span>Radiation Value</span>
+					<input placeholder="?????" type="text" tabindex="13" required>
 				</label>
 			</div>
 			<div>
 				<button name="submit" type="submit" id="startButton">Start View</button>
 			</div>
-		</form>
-		<!-- /Form -->
+		</div>
 		
 		</div>
 	</div>
 	<canvas id="spaceCanvas" style="display:none;"></canvas>
-	<script src="js/scripts.js"></script>
 	<script src="js/main.js"></script>
 	
 </body>

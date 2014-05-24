@@ -115,6 +115,12 @@ body {
 	outline:0;
 	border:1px solid #999;
 }
+
+.to_hide
+{
+    display: none;
+}
+
 ::-webkit-input-placeholder {
     color:#888;
 }
