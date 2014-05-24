@@ -32,6 +32,26 @@ window.onresize = function()
   draw_sky(canvas);
 }
 
+var callback = function(e) {
+  var state = document.fullScreen || document.mozFullScreen || document.webkitIsFullScreen;
+  var canvas = document.getElementById("spaceCanvas");
+
+  if (state)
+  {
+    canvas.style.display = "block";
+  }
+  else
+  {
+    canvas.style.display = "none";
+  }
+};
+
+
+
+document.addEventListener("fullscreenchange", callback);
+document.addEventListener("webkitfullscreenchange", callback);
+ 
+
 
 
 document.getElementById("startButton").onclick = function () {
