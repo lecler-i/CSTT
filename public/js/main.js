@@ -61,5 +61,5 @@ document.getElementById("startButton").onclick = function () {
   };
 
 $.get('catalogue.json',function(data){
-  // data is a JS object parsed from a JSON response
+  console.log(data);
 },'json');
