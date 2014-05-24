@@ -76,11 +76,19 @@ function drawSky(canvas) {
     fov = 1;
 
     RST = RefST(ra, decl, rotNE);
+<<<<<<< HEAD
     
     for(i=0; i<canvas.height; i++){
      detector_array[i] = [];
      for(j=0; j<canvas.width; j++){
 		detector_array[i][j] = 0.0;
+=======
+    var detector_array = [];
+    for(i=0; i<canvas.width; i++){
+     detector_array[i] = [];
+     for(j=0; j<canvas.height; j++){
+       detector_array[i][j] = 0.0;
+>>>>>>> c366b8099fb867066d92ffc301b859fb8a4e5ab9
    }
   }
 
